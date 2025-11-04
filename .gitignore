@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.log
+.legacy-uploads/
+.runtime/
+test-results/
+playwright-report/
+coverage/
+server/uploads/*
+!server/uploads/.gitkeep
