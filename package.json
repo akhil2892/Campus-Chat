@@ -1,0 +1,18 @@
+{
+  "name": "campus-chat",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["client", "server"],
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "dev": "concurrently -k -n api,web \"npm run dev -w server\" \"npm run dev -w client\"",
+    "demo": "node scripts/demo.mjs",
+    "seed": "npm run seed -w server",
+    "build": "npm run build -w client",
+    "start": "npm run start -w server",
+    "test": "npm run test -w server",
+    "test:e2e": "playwright test",
+    "check": "npm run build && npm test"
+  }
+}
