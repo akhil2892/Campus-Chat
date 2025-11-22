@@ -3,8 +3,13 @@
   "version": "2.0.0",
   "private": true,
   "type": "module",
-  "workspaces": ["client", "server"],
-  "engines": { "node": ">=22.12.0" },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "concurrently -k -n api,web \"npm run dev -w server\" \"npm run dev -w client\"",
     "demo": "node scripts/demo.mjs",
@@ -14,5 +19,12 @@
     "test": "npm run test -w server",
     "test:e2e": "playwright test",
     "check": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "concurrently": "^10.0.5",
+    "mongodb-memory-server": "^11.3.0",
+    "prettier": "^3.9.9",
+    "supertest": "^7.3.1"
   }
 }
