@@ -5,12 +5,286 @@ import { Avatar, ErrorMessage, PageHeading, fullName } from '../components.jsx';
 
 export function Profile() {
   const { user, setUser, notify } = useApp();
-  const [form, setForm] = useState({ firstName: user.firstName, lastName: user.lastName, bio: user.bio || '', color: user.color });
-  const [password, setPassword] = useState({ currentPassword: '', password: '', confirm: '' });
+  const [form, setForm] = useState({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    bio: user.bio || '',
+    color: user.color,
+  });
+  const [password, setPassword] = useState({
+    currentPassword: '',
+    password: '',
+    confirm: '',
+  });
   const [busy, setBusy] = useState('');
   const [error, setError] = useState('');
   const file = useRef(null);
-  const update = async (task, body, method = 'PATCH', path = '/users/me') => { setBusy(task); setError(''); try { const updated = await api(path, { method, body }); if (updated._id) setUser(updated); notify(task === 'password' ? 'Password updated. Other sessions have been signed out.' : 'Your profile is looking good.'); if (task === 'password') setPassword({ currentPassword: '', password: '', confirm: '' }); } catch (e) { setError(e.message); } finally { setBusy(''); } };
-  const avatar = e => { const selected = e.target.files[0]; if (!selected) return; const body = new FormData(); body.set('file', selected); update('avatar', body, 'POST', '/users/me/avatar'); e.target.value = ''; };
-  return <><PageHeading eyebrow="A LITTLE ABOUT YOU" title="Make yourself at home." description="Your profile, your preferences, your little corner of campus." /><ErrorMessage message={error} /><div className="profile-layout"><aside className="profile-summary panel"><div className="profile-cover"><span>✳</span><i /><i /></div><div className="profile-summary-content"><div className="profile-avatar-wrap"><Avatar user={{ ...user, color: form.color }} size="xl" /><button aria-label="Change profile photo" disabled={Boolean(busy)} onClick={() => file.current?.click()}><Camera size={17} /></button><input ref={file} hidden type="file" accept="image/png,image/jpeg,image/gif" onChange={avatar} /></div><h2>{fullName(user)}</h2><span className="tag">{user.role === 'student' ? `${user.section} · Year ${user.year}` : user.role === 'lecturer' ? 'Faculty member' : 'Campus admin'}</span><p>{user.bio || 'A familiar face, a new connection.'}</p><div className="profile-detail"><span>College email</span><strong>{user.email}</strong></div>{user.rollNumber && <div className="profile-detail"><span>Roll number</span><strong>{user.rollNumber}</strong></div>}<div className="profile-detail"><span>Part of the campus since</span><strong>{new Date(user.createdAt).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}</strong></div></div></aside><div className="profile-settings"><section className="panel settings-panel"><div className="settings-heading"><span className="stat-icon tone-sage"><Sparkles size={21} /></span><div><h2>The person behind the profile</h2><p>Share a little of what makes you, you.</p></div></div><form className="form-stack" onSubmit={e => { e.preventDefault(); update('profile', form); }}><div className="form-row"><label>First name<input required maxLength={50} value={form.firstName} onChange={e => setForm(f => ({ ...f, firstName: e.target.value }))} /></label><label>Last name<input required maxLength={50} value={form.lastName} onChange={e => setForm(f => ({ ...f, lastName: e.target.value }))} /></label></div><label>A little about you<textarea rows={3} maxLength={240} value={form.bio} onChange={e => setForm(f => ({ ...f, bio: e.target.value }))} placeholder="Your interests, your ideas, your favorite things." /></label><fieldset className="color-picker"><legend>Your color</legend>{['sage', 'peach', 'lavender', 'blue', 'gold'].map(color => <button type="button" aria-label={`${color} profile color`} aria-pressed={form.color === color} key={color} className={`tone-${color} ${form.color === color ? 'selected' : ''}`} onClick={() => setForm(f => ({ ...f, color }))}>{form.color === color ? '✓' : ''}</button>)}</fieldset><button className="button primary align-start" disabled={Boolean(busy)}>{busy === 'profile' ? 'Saving…' : 'Save my profile'}<Check size={17} /></button></form></section><section className="panel settings-panel"><div className="settings-heading"><span className="stat-icon tone-lavender"><Shield size={21} /></span><div><h2>A little more privacy</h2><p>Choose how you show up in conversations.</p></div></div><div className="preference-row"><div><strong>Anonymous messaging</strong><p>New messages hide your name from other members. Faculty reviewing a report can still identify the sender.</p></div><button className={`switch ${user.anonymous ? 'on' : ''}`} role="switch" aria-checked={user.anonymous} aria-label="Anonymous messaging" disabled={Boolean(busy)} onClick={() => update('privacy', { anonymous: !user.anonymous })}><span /></button></div></section><section className="panel settings-panel"><div className="settings-heading"><span className="stat-icon tone-peach"><Lock size={21} /></span><div><h2>Keep your space secure</h2><p>A strong password goes a long way.</p></div></div><form className="form-stack" onSubmit={e => { e.preventDefault(); if (password.password !== password.confirm) { setError('Your new passwords do not match.'); return; } update('password', { currentPassword: password.currentPassword, password: password.password }, 'PATCH', '/users/me/password'); }}><label>Current password<input type="password" autoComplete="current-password" required value={password.currentPassword} onChange={e => setPassword(p => ({ ...p, currentPassword: e.target.value }))} /></label><div className="form-row"><label>New password<input type="password" autoComplete="new-password" required minLength={8} maxLength={72} value={password.password} onChange={e => setPassword(p => ({ ...p, password: e.target.value }))} /></label><label>Confirm password<input type="password" autoComplete="new-password" required minLength={8} maxLength={72} value={password.confirm} onChange={e => setPassword(p => ({ ...p, confirm: e.target.value }))} /></label></div><button className="button secondary align-start" disabled={Boolean(busy)}>{busy === 'password' ? 'Updating…' : 'Update password'}<Lock size={16} /></button></form></section></div></div></>;
+  const update = async (task, body, method = 'PATCH', path = '/users/me') => {
+    setBusy(task);
+    setError('');
+    try {
+      const updated = await api(path, { method, body });
+      if (updated._id) setUser(updated);
+      notify(
+        task === 'password'
+          ? 'Password updated. Other sessions have been signed out.'
+          : 'Your profile is looking good.',
+      );
+      if (task === 'password') setPassword({ currentPassword: '', password: '', confirm: '' });
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setBusy('');
+    }
+  };
+  const avatar = (e) => {
+    const selected = e.target.files[0];
+    if (!selected) return;
+    const body = new FormData();
+    body.set('file', selected);
+    update('avatar', body, 'POST', '/users/me/avatar');
+    e.target.value = '';
+  };
+  return (
+    <>
+      <PageHeading
+        eyebrow="A LITTLE ABOUT YOU"
+        title="Make yourself at home."
+        description="Your profile, your preferences, your little corner of campus."
+      />
+      <ErrorMessage message={error} />
+      <div className="profile-layout">
+        <aside className="profile-summary panel">
+          <div className="profile-cover">
+            <span>✳</span>
+            <i />
+            <i />
+          </div>
+          <div className="profile-summary-content">
+            <div className="profile-avatar-wrap">
+              <Avatar user={{ ...user, color: form.color }} size="xl" />
+              <button
+                aria-label="Change profile photo"
+                disabled={Boolean(busy)}
+                onClick={() => file.current?.click()}
+              >
+                <Camera size={17} />
+              </button>
+              <input
+                ref={file}
+                hidden
+                type="file"
+                accept="image/png,image/jpeg,image/gif"
+                onChange={avatar}
+              />
+            </div>
+            <h2>{fullName(user)}</h2>
+            <span className="tag">
+              {user.role === 'student'
+                ? `${user.section} · Year ${user.year}`
+                : user.role === 'lecturer'
+                  ? 'Faculty member'
+                  : 'Campus admin'}
+            </span>
+            <p>{user.bio || 'A familiar face, a new connection.'}</p>
+            <div className="profile-detail">
+              <span>College email</span>
+              <strong>{user.email}</strong>
+            </div>
+            {user.rollNumber && (
+              <div className="profile-detail">
+                <span>Roll number</span>
+                <strong>{user.rollNumber}</strong>
+              </div>
+            )}
+            <div className="profile-detail">
+              <span>Part of the campus since</span>
+              <strong>
+                {new Date(user.createdAt).toLocaleDateString('en-IN', {
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </strong>
+            </div>
+          </div>
+        </aside>
+        <div className="profile-settings">
+          <section className="panel settings-panel">
+            <div className="settings-heading">
+              <span className="stat-icon tone-sage">
+                <Sparkles size={21} />
+              </span>
+              <div>
+                <h2>The person behind the profile</h2>
+                <p>Share a little of what makes you, you.</p>
+              </div>
+            </div>
+            <form
+              className="form-stack"
+              onSubmit={(e) => {
+                e.preventDefault();
+                update('profile', form);
+              }}
+            >
+              <div className="form-row">
+                <label>
+                  First name
+                  <input
+                    required
+                    maxLength={50}
+                    value={form.firstName}
+                    onChange={(e) => setForm((f) => ({ ...f, firstName: e.target.value }))}
+                  />
+                </label>
+                <label>
+                  Last name
+                  <input
+                    required
+                    maxLength={50}
+                    value={form.lastName}
+                    onChange={(e) => setForm((f) => ({ ...f, lastName: e.target.value }))}
+                  />
+                </label>
+              </div>
+              <label>
+                A little about you
+                <textarea
+                  rows={3}
+                  maxLength={240}
+                  value={form.bio}
+                  onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}
+                  placeholder="Your interests, your ideas, your favorite things."
+                />
+              </label>
+              <fieldset className="color-picker">
+                <legend>Your color</legend>
+                {['sage', 'peach', 'lavender', 'blue', 'gold'].map((color) => (
+                  <button
+                    type="button"
+                    aria-label={`${color} profile color`}
+                    aria-pressed={form.color === color}
+                    key={color}
+                    className={`tone-${color} ${form.color === color ? 'selected' : ''}`}
+                    onClick={() => setForm((f) => ({ ...f, color }))}
+                  >
+                    {form.color === color ? '✓' : ''}
+                  </button>
+                ))}
+              </fieldset>
+              <button className="button primary align-start" disabled={Boolean(busy)}>
+                {busy === 'profile' ? 'Saving…' : 'Save my profile'}
+                <Check size={17} />
+              </button>
+            </form>
+          </section>
+          <section className="panel settings-panel">
+            <div className="settings-heading">
+              <span className="stat-icon tone-lavender">
+                <Shield size={21} />
+              </span>
+              <div>
+                <h2>A little more privacy</h2>
+                <p>Choose how you show up in conversations.</p>
+              </div>
+            </div>
+            <div className="preference-row">
+              <div>
+                <strong>Anonymous messaging</strong>
+                <p>
+                  New messages hide your name from other members. Faculty reviewing a report can
+                  still identify the sender.
+                </p>
+              </div>
+              <button
+                className={`switch ${user.anonymous ? 'on' : ''}`}
+                role="switch"
+                aria-checked={user.anonymous}
+                aria-label="Anonymous messaging"
+                disabled={Boolean(busy)}
+                onClick={() => update('privacy', { anonymous: !user.anonymous })}
+              >
+                <span />
+              </button>
+            </div>
+          </section>
+          <section className="panel settings-panel">
+            <div className="settings-heading">
+              <span className="stat-icon tone-peach">
+                <Lock size={21} />
+              </span>
+              <div>
+                <h2>Keep your space secure</h2>
+                <p>A strong password goes a long way.</p>
+              </div>
+            </div>
+            <form
+              className="form-stack"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (password.password !== password.confirm) {
+                  setError('Your new passwords do not match.');
+                  return;
+                }
+                update(
+                  'password',
+                  {
+                    currentPassword: password.currentPassword,
+                    password: password.password,
+                  },
+                  'PATCH',
+                  '/users/me/password',
+                );
+              }}
+            >
+              <label>
+                Current password
+                <input
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  value={password.currentPassword}
+                  onChange={(e) =>
+                    setPassword((p) => ({
+                      ...p,
+                      currentPassword: e.target.value,
+                    }))
+                  }
+                />
+              </label>
+              <div className="form-row">
+                <label>
+                  New password
+                  <input
+                    type="password"
+                    autoComplete="new-password"
+                    required
+                    minLength={8}
+                    maxLength={72}
+                    value={password.password}
+                    onChange={(e) => setPassword((p) => ({ ...p, password: e.target.value }))}
+                  />
+                </label>
+                <label>
+                  Confirm password
+                  <input
+                    type="password"
+                    autoComplete="new-password"
+                    required
+                    minLength={8}
+                    maxLength={72}
+                    value={password.confirm}
+                    onChange={(e) => setPassword((p) => ({ ...p, confirm: e.target.value }))}
+                  />
+                </label>
+              </div>
+              <button className="button secondary align-start" disabled={Boolean(busy)}>
+                {busy === 'password' ? 'Updating…' : 'Update password'}
+                <Lock size={16} />
+              </button>
+            </form>
+          </section>
+        </div>
+      </div>
+    </>
+  );
 }
