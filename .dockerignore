@@ -1,0 +1,13 @@
+.git
+node_modules
+**/node_modules
+**/dist
+.env
+.env.*
+.runtime
+.legacy-uploads
+legacy
+coursework
+docs
+test-results
+playwright-report
