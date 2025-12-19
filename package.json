@@ -19,8 +19,8 @@
     "test": "npm run test -w server",
     "test:e2e": "playwright test",
     "check": "npm run build && npm test",
-    "format": "prettier --write client/src server/src server/test scripts tests playwright.config.js package.json client/package.json server/package.json docs README.md .github compose.yaml",
-    "format:check": "prettier --check client/src server/src server/test scripts tests playwright.config.js package.json client/package.json server/package.json docs README.md .github compose.yaml",
+    "format": "prettier --write client/src server/src server/test scripts tests playwright.config.js package.json client/package.json server/package.json docs README.md compose.yaml",
+    "format:check": "prettier --check client/src server/src server/test scripts tests playwright.config.js package.json client/package.json server/package.json docs README.md compose.yaml",
     "admin:create": "node server/src/admin.js"
   },
   "devDependencies": {

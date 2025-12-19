@@ -75,7 +75,7 @@ npm run test:e2e       # Browser flows, including two users and mobile navigatio
 npm run format:check
 ```
 
-`npm run check` runs the build and backend tests. The browser test runner starts a demo server automatically if one is not already running. To use installed Chrome, set `PLAYWRIGHT_CHANNEL=chrome` in your shell. GitHub Actions runs formatting, build, backend tests, and browser tests.
+`npm run check` runs the build and backend tests. The browser test runner starts a demo server automatically if one is not already running. To use installed Chrome, set `PLAYWRIGHT_CHANNEL=chrome` in your shell. To enable GitHub Actions, copy [the CI template](docs/ci-workflow.yml) to `.github/workflows/ci.yml` using a GitHub login with `workflow` permission. It runs formatting, build, backend tests, and browser tests.
 
 ## Production
 
