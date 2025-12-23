@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   NavLink,
   Navigate,
@@ -11,7 +11,6 @@ import {
 import {
   Bell,
   BookOpen,
-  ChevronDown,
   Compass,
   GraduationCap,
   LayoutDashboard,
@@ -45,9 +44,39 @@ function Layout() {
   const navigate = useNavigate();
   const location = useLocation();
   const [mobile, setMobile] = useState(false);
-  const [create, setCreate] = useState(false);
+  const [create, setCreate] = useState(null);
   const [guidelines, setGuidelines] = useState(false);
   const [search, setSearch] = useState('');
+  const navigation = useRef(null);
+  useEffect(() => {
+    if (!mobile) return;
+    const previous = document.activeElement;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    navigation.current?.querySelector('button')?.focus();
+    const key = (event) => {
+      if (event.key === 'Escape') setMobile(false);
+      if (event.key !== 'Tab') return;
+      const elements = [...navigation.current.querySelectorAll('a[href], button')].filter(
+        (element) => !element.disabled && element.getClientRects().length,
+      );
+      const first = elements[0];
+      const last = elements[elements.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener('keydown', key);
+    return () => {
+      document.body.style.overflow = overflow;
+      document.removeEventListener('keydown', key);
+      previous?.focus();
+    };
+  }, [mobile]);
   const { data: conversations } = useResource('/conversations');
   const { data: friends } = useResource('/friends');
   const unread = conversations.reduce((n, c) => n + c.unread, 0);
@@ -90,19 +119,34 @@ function Layout() {
       {mobile && (
         <button className="sidebar-scrim" onClick={closeMobile} aria-label="Close navigation" />
       )}
-      <aside className={`sidebar ${mobile ? 'mobile-open' : ''}`}>
-        <Brand />
+      <aside
+        className={`sidebar ${mobile ? 'mobile-open' : ''}`}
+        ref={navigation}
+        id="campus-navigation"
+        role={mobile ? 'dialog' : undefined}
+        aria-modal={mobile || undefined}
+        aria-label="Campus navigation"
+      >
+        <div className="sidebar-brand-row">
+          <Brand />
+          <button
+            className="icon-button sidebar-close"
+            onClick={closeMobile}
+            aria-label="Close navigation menu"
+          >
+            <X size={21} />
+          </button>
+        </div>
         <div className="workspace-label">
           <span className="workspace-icon">
             <GraduationCap size={17} />
           </span>
           <div>
-            <strong>The campus space</strong>
-            <small>Your everyday community</small>
+            <strong>Your campus</strong>
+            <small>Classmates. Clubs. Conversations.</small>
           </div>
-          <ChevronDown size={15} />
         </div>
-        <div className="nav-section-label">WORKSPACE</div>
+        <div className="nav-section-label">YOUR CAMPUS</div>
         <nav>
           {nav('/', LayoutDashboard, 'Overview')}
           {nav('/messages', MessageCircle, 'Messages', unread)}
@@ -122,10 +166,7 @@ function Layout() {
               <Sparkles size={18} />
               Better, together.
             </span>
-            <p>
-              Good conversations make
-              <br />a great campus.
-            </p>
+            <p>Good conversations make a great campus.</p>
             <button onClick={() => setGuidelines(true)}>
               Our community values <span>↗</span>
             </button>
@@ -163,11 +204,13 @@ function Layout() {
               className="icon-button mobile-menu"
               onClick={() => setMobile(true)}
               aria-label="Open navigation"
+              aria-expanded={mobile}
+              aria-controls="campus-navigation"
             >
               <Menu size={21} />
             </button>
             <span>
-              Workspace <span className="breadcrumb-slash">/</span>
+              Campus <span className="breadcrumb-slash">/</span>
               <strong>{title}</strong>
             </span>
           </div>
@@ -181,7 +224,7 @@ function Layout() {
             <Search size={17} />
             <input
               aria-label="Search people on campus"
-              placeholder="Search your campus…"
+              placeholder="Find classmates…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -210,17 +253,17 @@ function Layout() {
         <main
           className={`main-content ${location.pathname.startsWith('/messages') ? 'main-messages' : ''}`}
         >
-          <Outlet context={{ openCreate: () => setCreate(true) }} />
+          <Outlet context={{ openCreate: (kind = 'room') => setCreate(kind) }} />
         </main>
         <button
           className="floating-create"
-          onClick={() => setCreate(true)}
+          onClick={() => setCreate('group')}
           aria-label="Create a community"
         >
           <Plus size={22} />
         </button>
       </div>
-      {create && <CreateCommunity onClose={() => setCreate(false)} />}
+      {create && <CreateCommunity initialKind={create} onClose={() => setCreate(null)} />}
       {guidelines && (
         <Modal
           title="A campus for everyone."

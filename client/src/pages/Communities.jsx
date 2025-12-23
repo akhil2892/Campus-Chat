@@ -50,14 +50,14 @@ export function Communities({ groups = false }) {
     <>
       <PageHeading
         eyebrow={groups ? 'YOUR SHARED SPACES' : 'FIND YOUR KIND OF PEOPLE'}
-        title={groups ? 'A little space, together.' : 'There’s a place for you.'}
+        title={groups ? 'Your class & study groups.' : 'Discover campus rooms.'}
         description={
           groups
-            ? 'Your classmates, your project team, your people.'
-            : 'Follow your curiosity. Join a conversation. Make a connection.'
+            ? 'Your class group is ready. Create a private group for notes, projects, or exam prep.'
+            : 'Join a club conversation, ask a question, or find students who share your interests.'
         }
         action={
-          <button className="button primary" onClick={openCreate}>
+          <button className="button primary" onClick={() => openCreate(groups ? 'group' : 'room')}>
             <Plus size={17} />
             Create a space
           </button>
@@ -121,7 +121,10 @@ export function Communities({ groups = false }) {
               : 'Create a community and start something good.'
           }
           action={
-            <button className="button secondary" onClick={openCreate}>
+            <button
+              className="button secondary"
+              onClick={() => openCreate(groups ? 'group' : 'room')}
+            >
               <Plus size={17} />
               Create a space
             </button>
@@ -134,7 +137,7 @@ export function Communities({ groups = false }) {
     </>
   );
 }
-export function CreateCommunity({ onClose }) {
+export function CreateCommunity({ onClose, initialKind = 'room' }) {
   const { user, notify, refresh } = useApp();
   const navigate = useNavigate();
   const { data: friendships } = useResource('/friends');
@@ -143,7 +146,7 @@ export function CreateCommunity({ onClose }) {
   const [form, setForm] = useState({
     name: '',
     description: '',
-    kind: 'room',
+    kind: initialKind,
     category: 'interest',
     topic: 'Campus life',
     color: 'sage',
@@ -177,8 +180,8 @@ export function CreateCommunity({ onClose }) {
   };
   return (
     <Modal
-      title="Start something good."
-      subtitle="Create a little space for a shared interest or a big idea."
+      title="Create a room or group."
+      subtitle="Start a study group, plan a project, or bring a club together."
       onClose={onClose}
     >
       <ErrorMessage message={error} />
@@ -200,7 +203,7 @@ export function CreateCommunity({ onClose }) {
           >
             <Users size={22} />
             <strong>Private group</strong>
-            <small>Bring your friends</small>
+            <small>Invite your friends</small>
           </button>
         </div>
         <label>
@@ -212,7 +215,9 @@ export function CreateCommunity({ onClose }) {
             maxLength={80}
             value={form.name}
             onChange={change}
-            placeholder="e.g. The music room"
+            placeholder={
+              form.kind === 'group' ? 'e.g. Semester 3 study crew' : 'e.g. The music club'
+            }
           />
         </label>
         <label>

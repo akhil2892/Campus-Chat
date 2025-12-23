@@ -27,8 +27,13 @@ export function Dashboard() {
   const { data: conversations, loading, error } = useResource('/conversations');
   const { data: friends } = useResource('/friends');
   const direct = conversations.filter((c) => c.kind === 'direct');
-  const communities = conversations.filter((c) => c.kind !== 'direct');
+  const communities = conversations
+    .filter((c) => c.kind !== 'direct')
+    .sort((a, b) => Number(b.category === 'section') - Number(a.category === 'section'));
   const groups = conversations.filter((c) => c.kind === 'group');
+  const classGroup = groups.find(
+    (c) => c.category === 'section' && c.section === user.section && c.year === user.year,
+  );
   const friendCount = friends.filter((f) => f.status === 'accepted').length;
   const pending = friends.filter((f) => f.status === 'pending' && f.incoming).length;
   return (
@@ -40,7 +45,7 @@ export function Dashboard() {
             Hey, {user.firstName}
             <span className="greeting-sun">✳</span>
           </h1>
-          <p>A new day. A good conversation. A little more connection.</p>
+          <p>Catch up with classmates, share notes, and make plans after class.</p>
         </div>
         <div className="date-label">
           <span className="date-dot" />
@@ -52,6 +57,40 @@ export function Dashboard() {
           })}
         </div>
       </div>
+      <nav className="student-shortcuts" aria-label="Campus shortcuts">
+        <Link to={classGroup ? `/messages/${classGroup._id}` : '/groups'}>
+          <span className="shortcut-icon tone-sage">
+            <BookOpen size={21} />
+          </span>
+          <span>
+            <strong>{user.role === 'student' ? 'Open class chat' : 'Open your groups'}</strong>
+            <small>
+              {classGroup ? `${user.section} · Year ${user.year}` : 'Class & study groups'}
+            </small>
+          </span>
+          <ArrowUpRight size={18} />
+        </Link>
+        <Link to="/people">
+          <span className="shortcut-icon tone-blue">
+            <Users size={21} />
+          </span>
+          <span>
+            <strong>Find classmates</strong>
+            <small>Connect before you chat</small>
+          </span>
+          <ArrowUpRight size={18} />
+        </Link>
+        <button onClick={() => openCreate('group')}>
+          <span className="shortcut-icon tone-lavender">
+            <Plus size={21} />
+          </span>
+          <span>
+            <strong>Create a study group</strong>
+            <small>Invite your campus friends</small>
+          </span>
+          <ArrowUpRight size={18} />
+        </button>
+      </nav>
       <section className="welcome-banner">
         <div className="welcome-copy">
           <span className="banner-label">
@@ -64,11 +103,11 @@ export function Dashboard() {
             <em>Closer connections.</em>
           </h2>
           <p>
-            Find your community, share a little of your world,
-            <br className="desktop-break" /> and turn familiar faces into friends.
+            Study together. Find your club. Ask that question.
+            <br className="desktop-break" /> There’s a place for every part of campus life.
           </p>
           <Link className="button primary" to="/discover">
-            Explore your campus <ArrowUpRight size={18} />
+            Discover campus rooms <ArrowUpRight size={18} />
           </Link>
         </div>
         <CampusArt />
@@ -150,9 +189,9 @@ export function Dashboard() {
                 <h2>
                   Your communities <span className="subtle-count">{communities.length}</span>
                 </h2>
-                <p>Good company, shared interests.</p>
+                <p>Your class group, project teams, and campus rooms.</p>
               </div>
-              <Link className="text-link" to="/groups">
+              <Link className="text-link" to="/discover">
                 View all <ArrowRight size={16} />
               </Link>
             </div>
@@ -180,7 +219,7 @@ export function Dashboard() {
               <div className="section-heading">
                 <div>
                   <h2>Recent conversations</h2>
-                  <p>A little catching up goes a long way.</p>
+                  <p>Pick up where you left off.</p>
                 </div>
                 <Link className="text-link" to="/messages">
                   See all <ArrowUpRight size={16} />

@@ -49,8 +49,8 @@ export function Profile() {
     <>
       <PageHeading
         eyebrow="A LITTLE ABOUT YOU"
-        title="Make yourself at home."
-        description="Your profile, your preferences, your little corner of campus."
+        title="Your profile."
+        description="Help classmates recognize you and manage your chat preferences."
       />
       <ErrorMessage message={error} />
       <div className="profile-layout">

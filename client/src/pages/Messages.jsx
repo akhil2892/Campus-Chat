@@ -58,7 +58,11 @@ export function Messages() {
   const typingTimer = useRef(null);
   const lastTyping = useRef(0);
   const activeId = useRef(id);
-  const conversation = conversations.find((c) => c._id === id);
+  const lastConversation = useRef(null);
+  const currentConversation = conversations.find((c) => c._id === id);
+  if (currentConversation) lastConversation.current = currentConversation;
+  const conversation =
+    currentConversation || (lastConversation.current?._id === id ? lastConversation.current : null);
   const visible = conversations
     .filter(
       (c) => filter === 'All' || (filter === 'Direct' ? c.kind === 'direct' : c.kind !== 'direct'),
@@ -555,7 +559,7 @@ export function Messages() {
                   placeholder={
                     user.anonymous
                       ? 'Share a thought anonymously…'
-                      : 'A hello, a thought, a little update…'
+                      : 'Message, ask a question, or share notes…'
                   }
                   value={text}
                   onChange={updateText}

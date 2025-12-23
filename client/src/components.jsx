@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Check, Hash, MessageCircle, Sparkles, Users, X } from 'lucide-react';
 
@@ -190,24 +190,36 @@ export function Loading({ text = 'Getting things ready…' }) {
     </div>
   );
 }
+const openDialogs = [];
+let originalBodyOverflow;
 export function Modal({ title, subtitle, children, onClose }) {
   const dialog = useRef(null);
+  const close = useRef(onClose);
+  const titleId = useId();
+  close.current = onClose;
   useEffect(() => {
+    const element = dialog.current;
     const previous = document.activeElement;
-    const bodyOverflow = document.body.style.overflow;
+    if (!openDialogs.length) originalBodyOverflow = document.body.style.overflow;
+    openDialogs.push(element);
     document.body.style.overflow = 'hidden';
-    dialog.current?.focus();
+    element.focus();
     const key = (event) => {
-      if (event.key === 'Escape') onClose();
+      if (openDialogs.at(-1) !== element) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close.current();
+      }
       if (event.key === 'Tab') {
         const elements = [
-          ...dialog.current.querySelectorAll(
-            'button, input, select, textarea, a[href], [tabindex="0"]',
-          ),
-        ].filter((el) => !el.disabled);
+          ...element.querySelectorAll('button, input, select, textarea, a[href], [tabindex="0"]'),
+        ].filter((el) => !el.disabled && el.getClientRects().length);
         const first = elements[0];
         const last = elements[elements.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
+        if (
+          event.shiftKey &&
+          (document.activeElement === first || document.activeElement === element)
+        ) {
           event.preventDefault();
           last?.focus();
         } else if (!event.shiftKey && document.activeElement === last) {
@@ -219,10 +231,12 @@ export function Modal({ title, subtitle, children, onClose }) {
     document.addEventListener('keydown', key);
     return () => {
       document.removeEventListener('keydown', key);
-      document.body.style.overflow = bodyOverflow;
-      previous?.focus();
+      const index = openDialogs.indexOf(element);
+      if (index !== -1) openDialogs.splice(index, 1);
+      if (!openDialogs.length) document.body.style.overflow = originalBodyOverflow;
+      if (previous?.isConnected) previous.focus();
     };
-  }, [onClose]);
+  }, []);
   return (
     <div
       className="modal-backdrop"
@@ -234,7 +248,7 @@ export function Modal({ title, subtitle, children, onClose }) {
         className="modal"
         role="dialog"
         aria-modal="true"
-        aria-labelledby="modal-title"
+        aria-labelledby={titleId}
         ref={dialog}
         tabIndex={-1}
       >
@@ -244,7 +258,7 @@ export function Modal({ title, subtitle, children, onClose }) {
         <span className="modal-mark">
           <Sparkles size={22} />
         </span>
-        <h2 id="modal-title">{title}</h2>
+        <h2 id={titleId}>{title}</h2>
         {subtitle && <p className="modal-subtitle">{subtitle}</p>}
         {children}
       </section>
@@ -280,6 +294,7 @@ export function CommunityCard({ community, onJoin, busy = false }) {
             to={`/messages/${community._id}`}
             aria-label={`Open ${community.name}`}
           >
+            <span>Open chat</span>
             <ArrowUpRight size={19} />
           </Link>
         ) : (

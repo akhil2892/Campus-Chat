@@ -13,7 +13,7 @@
   --bg: #f8f9f5;
   --surface: #fff;
   --text: #28382e;
-  --muted: #899087;
+  --muted: #69766c;
   --secondary: #69776b;
   --border: #e8ece5;
   --green: #286453;
@@ -137,7 +137,7 @@ em {
   font-style: normal;
 }
 .eyebrow {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 1.7px;
   font-weight: 600;
   color: var(--secondary);
@@ -151,7 +151,7 @@ em {
   padding: 11px 18px;
   border: 1px solid transparent;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   transition:
     background 0.18s,
@@ -213,7 +213,7 @@ em {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--green);
 }
@@ -221,13 +221,13 @@ em {
   text-decoration: underline;
 }
 .text-button {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--green);
   padding: 5px;
 }
 .tag {
   padding: 5px 9px;
-  font-size: 9px;
+  font-size: 12px;
   border-radius: 5px;
   background: var(--bg);
   color: var(--secondary);
@@ -262,7 +262,7 @@ em {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   flex-shrink: 0;
   letter-spacing: 0;
@@ -276,12 +276,12 @@ em {
 .avatar-xs {
   width: 26px;
   height: 26px;
-  font-size: 9px;
+  font-size: 12px;
 }
 .avatar-sm {
   width: 34px;
   height: 34px;
-  font-size: 11px;
+  font-size: 14px;
 }
 .avatar-lg {
   width: 57px;
@@ -372,9 +372,15 @@ em {
   overflow-y: auto;
   scrollbar-width: thin;
 }
-.sidebar > .brand {
+.sidebar-brand-row {
   padding-left: 5px;
   margin-bottom: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar-close {
+  display: none;
 }
 .workspace-label {
   display: flex;
@@ -397,12 +403,12 @@ em {
   color: var(--green);
 }
 .workspace-label strong {
-  font-size: 11px;
+  font-size: 14px;
   display: block;
   letter-spacing: -0.1px;
 }
 .workspace-label small {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
   display: block;
   margin-top: 3px;
@@ -412,7 +418,7 @@ em {
   color: var(--muted);
 }
 .nav-section-label {
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.5px;
   color: var(--muted);
@@ -433,7 +439,7 @@ em {
   gap: 12px;
   padding: 12px 13px;
   border-radius: 7px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--secondary);
   height: 43px;
   transition: background 0.18s;
@@ -451,7 +457,7 @@ em {
   border-radius: 5px;
   margin-left: auto;
   padding: 2px 6px;
-  font-size: 9px;
+  font-size: 12px;
   color: var(--green);
 }
 .sidebar-bottom {
@@ -469,20 +475,20 @@ em {
   display: flex;
   gap: 8px;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 .sidebar-note > span svg {
   color: #a3a77c;
 }
 .sidebar-note p {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--secondary);
   line-height: 1.7;
   margin: 8px 0 12px;
 }
 .sidebar-note button {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--green);
   font-weight: 600;
   padding: 0;
@@ -510,14 +516,14 @@ em {
   min-width: 0;
 }
 .profile-link strong {
-  font-size: 11px;
+  font-size: 14px;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .profile-link small {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
   display: block;
   margin-top: 3px;
@@ -540,7 +546,7 @@ em {
   padding: 0 38px;
 }
 .topbar-title {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
   flex: 1;
   white-space: nowrap;
@@ -569,14 +575,14 @@ em {
   min-width: 0;
   width: 100%;
   padding: 8px 0;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--text);
 }
 .global-search input:focus {
   box-shadow: none;
 }
 .global-search kbd {
-  font-size: 11px;
+  font-size: 14px;
   font-family: inherit;
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -639,11 +645,11 @@ em {
 }
 .dashboard-greeting p {
   color: var(--secondary);
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 6px;
 }
 .date-label {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   padding: 9px 12px;
   border: 1px solid var(--border);
@@ -675,7 +681,7 @@ em {
   flex-shrink: 0;
 }
 .banner-label {
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.65px;
   color: var(--green);
@@ -701,14 +707,14 @@ em {
   font-size: 39px;
 }
 .welcome-copy p {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--secondary);
   margin-top: 12px;
   line-height: 1.8;
 }
 .welcome-copy .button {
   margin-top: 20px;
-  font-size: 11px;
+  font-size: 14px;
   min-height: 38px;
   padding: 9px 15px;
 }
@@ -728,7 +734,7 @@ em {
   right: 35px;
   top: 23px;
   transform: rotate(8deg);
-  font-size: 9px;
+  font-size: 12px;
   text-align: center;
   border: 1px dashed #a8b59a;
   border-radius: 50%;
@@ -741,7 +747,7 @@ em {
   line-height: 1.35;
 }
 .banner-stamp strong {
-  font-size: 11px;
+  font-size: 14px;
 }
 .banner-stamp > span {
   font-size: 15px;
@@ -783,7 +789,7 @@ em {
   letter-spacing: -1px;
 }
 .stats-strip > div > div > span {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--secondary);
   display: block;
   margin-top: 3px;
@@ -810,14 +816,14 @@ em {
   letter-spacing: -0.3px;
 }
 .section-heading p {
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 5px;
   color: var(--secondary);
 }
 .subtle-count {
   display: inline-block;
   margin-left: 6px;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0;
   font-weight: 500;
   color: var(--secondary);
@@ -867,7 +873,7 @@ em {
   overflow-wrap: anywhere;
 }
 .community-card > p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   line-height: 1.8;
   min-height: 54px;
@@ -896,13 +902,13 @@ em {
   margin-left: -7px;
   width: 25px;
   height: 25px;
-  font-size: 7px;
+  font-size: 12px;
 }
 .member-stack .avatar:first-child {
   margin-left: 0;
 }
 .member-stack > span:last-child:not(.avatar) {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--secondary);
   margin-left: 7px;
   white-space: nowrap;
@@ -925,7 +931,7 @@ em {
   display: flex;
   gap: 6px;
   align-items: center;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--green);
   border: 1px solid var(--border);
@@ -970,10 +976,10 @@ em {
   flex: 1;
 }
 .recent-text strong {
-  font-size: 11px;
+  font-size: 14px;
 }
 .recent-text p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   overflow: hidden;
   white-space: nowrap;
@@ -990,12 +996,12 @@ em {
   margin-top: 2px;
 }
 .recent-meta small {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
   white-space: nowrap;
 }
 .unread-pill {
-  font-size: 8px;
+  font-size: 12px;
   min-width: 17px;
   height: 17px;
   display: inline-flex;
@@ -1016,7 +1022,7 @@ em {
   overflow: hidden;
 }
 .connection-card > .eyebrow {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.2px;
 }
 .connection-card h2 {
@@ -1027,13 +1033,13 @@ em {
   margin-top: 13px;
 }
 .connection-card p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   margin-top: 10px;
   max-width: 250px;
 }
 .connection-card > .button {
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 16px;
   min-height: 35px;
   padding: 8px 12px;
@@ -1056,11 +1062,11 @@ em {
   justify-content: space-between;
   align-items: center;
   padding-top: 30px;
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
 }
 .dashboard-footer > span:last-child {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
 }
 .dashboard-footer > span:last-child > span {
@@ -1080,7 +1086,7 @@ em {
   font-size: 31px;
 }
 .page-heading p {
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 8px;
   color: var(--secondary);
 }
@@ -1109,7 +1115,7 @@ em {
   font-weight: 500;
 }
 .discover-banner p {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--secondary);
   margin-top: 4px;
 }
@@ -1132,7 +1138,7 @@ em {
   flex-wrap: wrap;
 }
 .filter-tabs > button {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   padding: 9px 12px;
   border-radius: 7px;
@@ -1151,7 +1157,7 @@ em {
 }
 .tab-count {
   background: #cbd6c44d;
-  font-size: 9px;
+  font-size: 12px;
   padding: 1px 4px;
   border-radius: 4px;
 }
@@ -1173,7 +1179,7 @@ em {
   padding: 11px 0;
   min-width: 0;
   width: 100%;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--text);
 }
 .search-field input:focus {
@@ -1182,7 +1188,7 @@ em {
 .bottom-note {
   margin: 36px 0;
   text-align: center;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
 }
 .bottom-note > span {
@@ -1212,17 +1218,17 @@ em {
   margin-bottom: 5px;
 }
 .person-meta {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
 }
 .person-card > p {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--secondary);
   margin: 14px 0 19px;
   min-height: 57px;
 }
 .person-card .button {
-  font-size: 11px;
+  font-size: 14px;
 }
 .faculty-tag {
   background: var(--lavender);
@@ -1246,12 +1252,12 @@ em {
   font-size: 15px;
 }
 .request-card p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   margin: 5px 0;
 }
 .request-card small {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
 }
 .request-card p > span {
@@ -1272,7 +1278,7 @@ em {
   display: flex;
   flex-direction: column;
   gap: 7px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text);
 }
@@ -1285,7 +1291,7 @@ em {
   border-radius: 7px;
   width: 100%;
   padding: 11px 12px;
-  font-size: 12px;
+  font-size: 14px;
   min-height: 41px;
 }
 .form-stack textarea {
@@ -1305,11 +1311,11 @@ em {
   min-width: 0;
 }
 .form-help {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
 }
 .optional {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
   font-weight: 400;
 }
@@ -1320,7 +1326,7 @@ em {
   background: #f9e9e4;
   border: 1px solid #edcfc7;
   color: #993f32;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.6;
 }
 .loading {
@@ -1329,7 +1335,7 @@ em {
   justify-content: center;
   gap: 12px;
   padding: 70px 20px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--secondary);
 }
 .spinner {
@@ -1369,7 +1375,7 @@ em {
   font-size: 17px;
 }
 .empty-state p {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--secondary);
   max-width: 310px;
   margin-bottom: 3px;
@@ -1424,7 +1430,7 @@ em {
   font-weight: 400;
 }
 .modal-subtitle {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--secondary);
   margin: 8px 0 24px;
 }
@@ -1450,10 +1456,10 @@ em {
   color: var(--green);
 }
 .space-type-select strong {
-  font-size: 11px;
+  font-size: 14px;
 }
 .space-type-select small {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--secondary);
 }
 fieldset {
@@ -1462,7 +1468,7 @@ fieldset {
   margin: 0;
 }
 legend {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -1488,7 +1494,7 @@ legend {
 .friend-picker label {
   flex-direction: row;
   align-items: center;
-  font-size: 11px;
+  font-size: 14px;
   gap: 10px;
   margin-bottom: 9px;
 }
@@ -1499,7 +1505,7 @@ legend {
   accent-color: var(--green);
 }
 .values-list p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--secondary);
   margin-bottom: 20px;
 }
@@ -1521,7 +1527,7 @@ legend {
   border: 1px solid var(--border);
   color: var(--green);
   box-shadow: 0 8px 40px #172b2330;
-  font-size: 12px;
+  font-size: 14px;
   max-width: calc(100% - 40px);
 }
 .toast > span {
@@ -1560,7 +1566,7 @@ legend {
   max-width: 440px;
 }
 .auth-story .eyebrow {
-  font-size: 10px;
+  font-size: 12px;
   display: flex;
   gap: 9px;
   align-items: center;
@@ -1583,7 +1589,7 @@ legend {
 }
 .auth-story-content > p {
   color: var(--secondary);
-  font-size: 13px;
+  font-size: 14px;
   margin: 21px 0 8px;
   line-height: 1.9;
 }
@@ -1596,7 +1602,7 @@ legend {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   margin-top: 10px;
 }
@@ -1608,7 +1614,7 @@ legend {
 .auth-copyright {
   display: flex;
   justify-content: space-between;
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1px;
   color: var(--secondary);
 }
@@ -1642,7 +1648,7 @@ legend {
   letter-spacing: -0.8px;
 }
 .auth-intro {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--secondary);
   margin: 9px 0 28px;
 }
@@ -1664,7 +1670,7 @@ legend {
   top: 4px;
 }
 .auth-switch {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--secondary);
   margin-top: 22px;
   text-align: center;
@@ -1685,7 +1691,7 @@ legend {
   display: flex;
   align-items: center;
   gap: 15px;
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1px;
   color: var(--muted);
   margin-bottom: 20px;
@@ -1696,7 +1702,7 @@ legend {
   flex: 1;
 }
 .demo-section > .button {
-  font-size: 11px;
+  font-size: 14px;
   background: var(--cream);
 }
 .demo-role-links {
@@ -1706,7 +1712,7 @@ legend {
   margin-top: 13px;
 }
 .demo-role-links > button {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--green);
   padding: 3px;
 }
@@ -1714,13 +1720,13 @@ legend {
   color: var(--muted);
 }
 .demo-section > small {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 10px;
   display: block;
 }
 .auth-terms {
-  font-size: 9px;
+  font-size: 12px;
   text-align: center;
   color: var(--muted);
   margin-top: 33px;
@@ -1761,7 +1767,7 @@ legend {
   color: #bea574;
 }
 .conversation-sidebar-heading .eyebrow {
-  font-size: 8px;
+  font-size: 12px;
 }
 .conversation-sidebar > .search-field {
   margin: 0 22px;
@@ -1774,7 +1780,7 @@ legend {
   gap: 6px;
 }
 .chat-filter-tabs > button {
-  font-size: 10px;
+  font-size: 12px;
   padding: 7px 10px;
   border-radius: 6px;
   color: var(--secondary);
@@ -1810,7 +1816,7 @@ legend {
 .conversation-item > .avatar {
   width: 37px;
   height: 37px;
-  font-size: 11px;
+  font-size: 14px;
 }
 .conversation-preview {
   min-width: 0;
@@ -1823,18 +1829,18 @@ legend {
   gap: 8px;
 }
 .conversation-preview strong {
-  font-size: 11px;
+  font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .conversation-preview small {
-  font-size: 7px;
+  font-size: 12px;
   color: var(--muted);
   white-space: nowrap;
 }
 .conversation-preview > p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   white-space: nowrap;
   overflow: hidden;
@@ -1844,7 +1850,7 @@ legend {
   padding-right: 18px;
 }
 .conversation-kind {
-  font-size: 7px;
+  font-size: 12px;
   color: var(--muted);
 }
 .conversation-item > .unread-pill {
@@ -1857,7 +1863,7 @@ legend {
   align-items: center;
   padding: 17px 24px;
   border-top: 1px solid var(--border);
-  font-size: 9px;
+  font-size: 12px;
   color: var(--secondary);
 }
 .conversation-sidebar-footer > .connection-dot {
@@ -1889,7 +1895,7 @@ legend {
   letter-spacing: -0.3px;
 }
 .chat-header p {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--secondary);
   margin-top: 5px;
   line-height: 1.4;
@@ -1913,7 +1919,7 @@ legend {
   margin: 12px 0 26px;
 }
 .message-date > span {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1930,7 +1936,7 @@ legend {
   margin-bottom: 24px;
   width: 29px;
   height: 29px;
-  font-size: 9px;
+  font-size: 12px;
 }
 .message-row.mine {
   justify-content: flex-end;
@@ -1940,7 +1946,7 @@ legend {
   min-width: 0;
 }
 .message-author {
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--secondary);
   margin: 0 0 7px 3px;
@@ -1953,7 +1959,7 @@ legend {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px 12px 12px 2px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.75;
   overflow-wrap: anywhere;
   color: var(--text);
@@ -1972,7 +1978,7 @@ legend {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 7px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 7px;
   padding: 0 2px;
@@ -2001,7 +2007,7 @@ legend {
   gap: 10px;
   align-items: center;
   margin-top: 9px;
-  font-size: 11px;
+  font-size: 14px;
 }
 .attachment-link img {
   max-width: 100%;
@@ -2015,7 +2021,7 @@ legend {
 }
 .attachment-link small {
   display: block;
-  font-size: 8px;
+  font-size: 12px;
   opacity: 0.7;
   margin-top: 4px;
 }
@@ -2023,7 +2029,7 @@ legend {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
   margin: 0 0 15px 37px;
 }
@@ -2069,7 +2075,7 @@ legend {
   min-height: 40px;
   max-height: 120px;
   color: var(--text);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
   padding: 1px 3px;
 }
@@ -2090,7 +2096,7 @@ legend {
   gap: 5px;
 }
 .anonymous-toggle {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
   display: flex;
   align-items: center;
@@ -2121,7 +2127,7 @@ legend {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 7px;
+  font-size: 12px;
   color: var(--muted);
   padding: 9px 4px 0;
 }
@@ -2129,7 +2135,7 @@ legend {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 10px;
+  font-size: 12px;
   padding: 7px 11px;
   margin-bottom: 8px;
   background: var(--green-soft);
@@ -2187,7 +2193,7 @@ legend {
   font-style: normal;
 }
 .chat-welcome > .eyebrow {
-  font-size: 9px;
+  font-size: 12px;
 }
 .chat-welcome h2 {
   font-size: 36px;
@@ -2201,7 +2207,7 @@ legend {
   font-size: 40px;
 }
 .chat-welcome p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--secondary);
   margin: 16px 0 23px;
 }
@@ -2209,7 +2215,7 @@ legend {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 45px;
 }
@@ -2217,7 +2223,7 @@ legend {
   display: block;
   margin: 0 auto 20px;
   color: var(--green);
-  font-size: 10px;
+  font-size: 12px;
   padding: 7px 12px;
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -2240,10 +2246,10 @@ legend {
   flex: 1;
 }
 .conversation-member-list strong {
-  font-size: 12px;
+  font-size: 14px;
 }
 .conversation-member-list small {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--secondary);
 }
 .community-actions {
@@ -2272,10 +2278,10 @@ legend {
   gap: 4px;
 }
 .new-chat-list strong {
-  font-size: 13px;
+  font-size: 14px;
 }
 .new-chat-list small {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
 }
 .new-chat-list > button > svg {
@@ -2287,7 +2293,7 @@ legend {
   border-left: 3px solid #a5b697;
   border-radius: 7px;
   padding: 15px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--secondary);
   margin-bottom: 23px;
   overflow-wrap: anywhere;
@@ -2362,7 +2368,7 @@ legend {
   margin-bottom: 10px;
 }
 .profile-summary-content > p {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--secondary);
   padding: 20px 0;
   border-bottom: 1px solid var(--border);
@@ -2375,11 +2381,11 @@ legend {
   gap: 6px;
 }
 .profile-detail > span {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
 }
 .profile-detail > strong {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   overflow-wrap: anywhere;
 }
@@ -2401,7 +2407,7 @@ legend {
   font-size: 16px;
 }
 .settings-heading p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   margin-top: 5px;
 }
@@ -2414,10 +2420,10 @@ legend {
   flex: 1;
 }
 .preference-row strong {
-  font-size: 12px;
+  font-size: 14px;
 }
 .preference-row p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   margin-top: 6px;
   max-width: 400px;
@@ -2466,7 +2472,7 @@ legend {
   letter-spacing: -1px;
 }
 .admin-stat > p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   margin-top: 6px;
 }
@@ -2484,15 +2490,15 @@ legend {
   flex: 1;
 }
 .moderation-banner strong {
-  font-size: 13px;
+  font-size: 14px;
 }
 .moderation-banner p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--secondary);
   margin-top: 5px;
 }
 .moderation-banner > .button {
-  font-size: 10px;
+  font-size: 12px;
 }
 .table-panel {
   padding: 23px;
@@ -2504,11 +2510,11 @@ table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 10px;
+  font-size: 12px;
 }
 th {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
   padding: 13px 10px;
   background: var(--bg);
@@ -2531,7 +2537,7 @@ tr:last-child td {
   color: var(--text);
 }
 .status-tag {
-  font-size: 9px;
+  font-size: 12px;
   color: #a9834e;
   background: var(--gold);
   padding: 5px 9px;
@@ -2575,16 +2581,16 @@ tr:last-child td {
   flex-shrink: 0;
 }
 .activity-item strong {
-  font-size: 12px;
+  font-size: 14px;
 }
 .activity-item p {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--secondary);
   margin: 5px 0;
   overflow-wrap: anywhere;
 }
 .activity-item small {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
 }
 .reports-list {
@@ -2603,7 +2609,7 @@ tr:last-child td {
   margin-bottom: 19px;
 }
 .report-heading small {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
 }
 .report-card h3 {
@@ -2611,11 +2617,11 @@ tr:last-child td {
   margin-bottom: 16px;
 }
 .report-card > .reported-preview {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 17px;
 }
 .report-context {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--secondary);
   margin-bottom: 18px;
   overflow-wrap: anywhere;
@@ -2631,11 +2637,11 @@ tr:last-child td {
   gap: 5px;
 }
 .report-people span {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
 }
 .report-people strong {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
 }
 .report-footer {
@@ -2648,11 +2654,11 @@ tr:last-child td {
   padding-top: 18px;
 }
 .report-footer > span {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
 }
 .report-footer > .button {
-  font-size: 10px;
+  font-size: 12px;
   padding: 8px 12px;
   min-height: 34px;
 }
@@ -2681,25 +2687,25 @@ tr:last-child td {
     padding: 25px;
   }
   .community-card > p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .community-card h3 {
     font-size: 18px;
   }
   .community-card .tag {
-    font-size: 10px;
+    font-size: 12px;
   }
   .community-card-bottom .member-stack > span:last-child {
-    font-size: 10px;
+    font-size: 12px;
   }
   .recent-item {
     padding: 20px 0;
   }
   .recent-text strong {
-    font-size: 13px;
+    font-size: 14px;
   }
   .recent-text p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .connection-card {
     padding: 29px;
@@ -2708,7 +2714,7 @@ tr:last-child td {
     font-size: 31px;
   }
   .connection-card p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .messaging-layout {
     grid-template-columns: 350px minmax(0, 1fr);
@@ -2747,7 +2753,7 @@ tr:last-child td {
     font-size: 21px;
   }
   .stats-strip > div > div > span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .stats-strip a {
     display: none;
@@ -2767,20 +2773,20 @@ tr:last-child td {
     font-size: 35px;
   }
   .welcome-copy p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .banner-stamp {
     right: 22px;
     top: 19px;
     width: 52px;
     height: 52px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .banner-stamp strong {
-    font-size: 9px;
+    font-size: 12px;
   }
   .banner-stamp > span {
-    font-size: 12px;
+    font-size: 14px;
   }
   .community-grid {
     gap: 15px;
@@ -2789,7 +2795,7 @@ tr:last-child td {
     padding: 18px;
   }
   .community-card .tag {
-    font-size: 8px;
+    font-size: 12px;
     padding: 5px 6px;
   }
   .community-icon {
@@ -2798,15 +2804,15 @@ tr:last-child td {
     border-radius: 10px;
   }
   .community-card h3 {
-    font-size: 13px;
+    font-size: 14px;
   }
   .member-stack .avatar {
     width: 22px;
     height: 22px;
-    font-size: 6px;
+    font-size: 12px;
   }
   .member-stack > span:last-child:not(.avatar) {
-    font-size: 7px;
+    font-size: 12px;
     margin-left: 5px;
   }
   .community-card-bottom {
@@ -2833,7 +2839,7 @@ tr:last-child td {
     font-size: 15px;
   }
   .section-heading .text-link {
-    font-size: 10px;
+    font-size: 12px;
   }
   .messaging-layout {
     grid-template-columns: 275px minmax(0, 1fr);
@@ -2857,7 +2863,7 @@ tr:last-child td {
     padding: 0 20px 15px;
   }
   .filter-tabs > button {
-    font-size: 9px;
+    font-size: 12px;
     padding: 9px 10px;
   }
   .filter-bar .search-field {
@@ -2891,7 +2897,7 @@ tr:last-child td {
     padding-left: 13px;
     padding-right: 13px;
   }
-  .sidebar > .brand {
+  .sidebar-brand-row > .brand {
     font-size: 22px;
     gap: 8px;
   }
@@ -2900,10 +2906,10 @@ tr:last-child td {
     padding: 11px 7px;
   }
   .workspace-label strong {
-    font-size: 10px;
+    font-size: 12px;
   }
   .workspace-label small {
-    font-size: 8px;
+    font-size: 12px;
   }
   .workspace-label > svg {
     display: none;
@@ -2916,13 +2922,13 @@ tr:last-child td {
     padding: 0 22px;
   }
   .topbar-title {
-    font-size: 10px;
+    font-size: 12px;
   }
   .global-search {
     width: 165px;
   }
   .global-search input {
-    font-size: 10px;
+    font-size: 12px;
   }
   .topbar-actions {
     gap: 5px;
@@ -2978,7 +2984,7 @@ tr:last-child td {
     font-size: 20px;
   }
   .stats-strip > div > div > span {
-    font-size: 7px;
+    font-size: 12px;
   }
   .community-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2997,10 +3003,10 @@ tr:last-child td {
     margin-bottom: 13px;
   }
   .dashboard-community-grid .community-card h3 {
-    font-size: 12px;
+    font-size: 14px;
   }
   .dashboard-community-grid .community-card > p {
-    font-size: 9px;
+    font-size: 12px;
     min-height: 50px;
   }
   .dashboard-community-grid .member-stack .avatar {
@@ -3008,7 +3014,7 @@ tr:last-child td {
   }
   .dashboard-community-grid .member-stack > span:last-child:not(.avatar) {
     margin-left: 0;
-    font-size: 8px;
+    font-size: 12px;
   }
   .dashboard-bottom-grid {
     grid-template-columns: 1.3fr 1fr;
@@ -3021,7 +3027,7 @@ tr:last-child td {
     font-size: 24px;
   }
   .connection-card > .eyebrow {
-    font-size: 7px;
+    font-size: 12px;
     letter-spacing: 1px;
   }
   .conversation-panel {
@@ -3031,25 +3037,25 @@ tr:last-child td {
     gap: 8px;
   }
   .recent-text p {
-    font-size: 9px;
+    font-size: 12px;
   }
   .recent-text strong {
-    font-size: 10px;
+    font-size: 12px;
   }
   .recent-meta small {
-    font-size: 7px;
+    font-size: 12px;
   }
   .recent-item > .avatar {
     width: 32px;
     height: 32px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .section-heading h2 {
-    font-size: 13px;
+    font-size: 14px;
   }
   .section-heading > p,
   .section-heading p {
-    font-size: 9px;
+    font-size: 12px;
   }
   .conversation-panel .section-heading > .text-link {
     font-size: 0;
@@ -3068,10 +3074,10 @@ tr:last-child td {
     font-size: 28px;
   }
   .page-heading p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .page-heading > .button {
-    font-size: 10px;
+    font-size: 12px;
     padding: 9px 12px;
   }
   .profile-layout {
@@ -3104,7 +3110,7 @@ tr:last-child td {
     padding: 18px;
   }
   .admin-stat > p {
-    font-size: 9px;
+    font-size: 12px;
   }
   .reports-list {
     grid-template-columns: 1fr;
@@ -3122,16 +3128,16 @@ tr:last-child td {
   .conversation-item > .avatar {
     width: 30px;
     height: 30px;
-    font-size: 9px;
+    font-size: 12px;
   }
   .conversation-preview strong {
-    font-size: 10px;
+    font-size: 12px;
   }
   .conversation-preview small {
-    font-size: 6px;
+    font-size: 12px;
   }
   .conversation-preview > p {
-    font-size: 9px;
+    font-size: 12px;
   }
   .chat-filter-tabs {
     margin: 18px 12px 12px;
@@ -3139,7 +3145,7 @@ tr:last-child td {
   }
   .chat-filter-tabs > button {
     padding: 7px 9px;
-    font-size: 9px;
+    font-size: 12px;
   }
   .message-body {
     max-width: 85%;
@@ -3152,7 +3158,7 @@ tr:last-child td {
     font-size: 14px;
   }
   .message-bubble {
-    font-size: 11px;
+    font-size: 14px;
     padding: 11px 13px;
   }
   .chat-welcome h2 {
@@ -3162,7 +3168,7 @@ tr:last-child td {
     font-size: 33px;
   }
   .chat-welcome p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .auth-story h1 {
     font-size: 43px;
@@ -3171,10 +3177,10 @@ tr:last-child td {
     font-size: 48px;
   }
   .auth-story .eyebrow {
-    font-size: 8px;
+    font-size: 12px;
   }
   .auth-story-content > p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .auth-story-footer {
     flex-direction: column;
@@ -3194,14 +3200,14 @@ tr:last-child td {
   .sidebar.mobile-open {
     transform: translateX(0);
   }
-  .sidebar > .brand {
+  .sidebar-brand-row > .brand {
     font-size: 24px;
   }
   .workspace-label strong {
-    font-size: 11px;
+    font-size: 14px;
   }
   .workspace-label small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .workspace-label > svg {
     display: block;
@@ -3231,13 +3237,13 @@ tr:last-child td {
     padding: 0;
   }
   .topbar-title {
-    font-size: 11px;
+    font-size: 14px;
   }
   .global-search {
     width: 200px;
   }
   .global-search input {
-    font-size: 11px;
+    font-size: 14px;
   }
   .messaging-layout {
     height: calc(100dvh - 65px);
@@ -3266,7 +3272,7 @@ tr:last-child td {
     height: 35px;
   }
   .stats-strip > div > div > span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .dashboard-community-grid .community-card-top {
     flex-direction: row;
@@ -3276,10 +3282,10 @@ tr:last-child td {
     padding: 17px;
   }
   .dashboard-community-grid .community-card h3 {
-    font-size: 13px;
+    font-size: 14px;
   }
   .dashboard-community-grid .community-card > p {
-    font-size: 10px;
+    font-size: 12px;
     min-height: 54px;
   }
   .community-grid {
@@ -3298,10 +3304,10 @@ tr:last-child td {
     font-size: 16px;
   }
   .recent-text strong {
-    font-size: 11px;
+    font-size: 14px;
   }
   .recent-text p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .recent-item > .avatar {
     width: 37px;
@@ -3311,7 +3317,7 @@ tr:last-child td {
     font-size: 27px;
   }
   .connection-card > .eyebrow {
-    font-size: 8px;
+    font-size: 12px;
   }
   .auth-story {
     padding: 30px;
@@ -3335,7 +3341,7 @@ tr:last-child td {
     font-size: 24px;
   }
   .auth-story .eyebrow {
-    font-size: 7px;
+    font-size: 12px;
     letter-spacing: 1px;
   }
   .profile-layout {
@@ -3349,7 +3355,7 @@ tr:last-child td {
     gap: 12px;
   }
   .topbar-title > span {
-    font-size: 10px;
+    font-size: 12px;
   }
   .topbar-title > span > strong {
     display: none;
@@ -3364,7 +3370,7 @@ tr:last-child td {
     max-width: 185px;
   }
   .global-search input {
-    font-size: 10px;
+    font-size: 12px;
   }
   .global-search kbd {
     display: none;
@@ -3393,14 +3399,14 @@ tr:last-child td {
   }
   .dashboard-greeting > .eyebrow,
   .dashboard-greeting .eyebrow {
-    font-size: 8px;
+    font-size: 12px;
     letter-spacing: 1.5px;
   }
   .dashboard-greeting h1 {
     font-size: 28px;
   }
   .dashboard-greeting p {
-    font-size: 11px;
+    font-size: 14px;
     max-width: 260px;
   }
   .welcome-banner {
@@ -3419,10 +3425,10 @@ tr:last-child td {
     font-size: 35px;
   }
   .welcome-copy p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .welcome-copy .button {
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 17px;
   }
   .welcome-banner > .campus-art {
@@ -3454,7 +3460,7 @@ tr:last-child td {
     border-bottom: 1px solid var(--border);
   }
   .stats-strip > div > div > span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .stats-strip .stat-icon {
     width: 36px;
@@ -3476,7 +3482,7 @@ tr:last-child td {
   }
   .community-card .tag,
   .dashboard-community-grid .community-card .tag {
-    font-size: 9px;
+    font-size: 12px;
     padding: 5px 9px;
   }
   .community-icon {
@@ -3489,7 +3495,7 @@ tr:last-child td {
   }
   .community-card > p,
   .dashboard-community-grid .community-card > p {
-    font-size: 11px;
+    font-size: 14px;
     min-height: 0;
     -webkit-line-clamp: 2;
   }
@@ -3497,11 +3503,11 @@ tr:last-child td {
     display: inline-flex;
     width: 25px;
     height: 25px;
-    font-size: 7px;
+    font-size: 12px;
   }
   .member-stack > span:last-child:not(.avatar),
   .dashboard-community-grid .member-stack > span:last-child:not(.avatar) {
-    font-size: 9px;
+    font-size: 12px;
     margin-left: 7px;
   }
   .community-card-bottom {
@@ -3523,7 +3529,7 @@ tr:last-child td {
   }
   .connection-card p {
     max-width: 260px;
-    font-size: 11px;
+    font-size: 14px;
   }
   .connection-doodle {
     right: 32px;
@@ -3537,31 +3543,31 @@ tr:last-child td {
     font-size: 29px;
   }
   .connection-card > .button {
-    font-size: 11px;
+    font-size: 14px;
   }
   .conversation-panel {
     padding: 22px;
   }
   .conversation-panel .section-heading > .text-link {
-    font-size: 10px;
+    font-size: 12px;
     gap: 7px;
   }
   .recent-item {
     padding: 18px 0;
   }
   .recent-text strong {
-    font-size: 12px;
+    font-size: 14px;
   }
   .recent-text p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .recent-item > .avatar {
     width: 40px;
     height: 40px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .dashboard-footer {
-    font-size: 8px;
+    font-size: 12px;
     padding-bottom: 15px;
   }
   .page-heading {
@@ -3575,13 +3581,13 @@ tr:last-child td {
     line-height: 1.2;
   }
   .page-heading p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .page-heading .eyebrow {
-    font-size: 8px;
+    font-size: 12px;
   }
   .page-heading > .button {
-    font-size: 11px;
+    font-size: 14px;
   }
   .discover-banner {
     padding: 17px;
@@ -3596,10 +3602,10 @@ tr:last-child td {
     width: 26px;
   }
   .discover-banner strong {
-    font-size: 12px;
+    font-size: 14px;
   }
   .discover-banner p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .discover-banner-star {
     display: none;
@@ -3609,7 +3615,7 @@ tr:last-child td {
     gap: 17px;
   }
   .filter-tabs > button {
-    font-size: 10px;
+    font-size: 12px;
     padding: 8px 10px;
   }
   .filter-bar > .search-field {
@@ -3648,7 +3654,7 @@ tr:last-child td {
     margin-left: 61px;
   }
   .request-actions > .button {
-    font-size: 11px;
+    font-size: 14px;
   }
   .auth-page {
     display: block;
@@ -3681,7 +3687,7 @@ tr:last-child td {
     margin-bottom: 21px;
   }
   .auth-intro {
-    font-size: 12px;
+    font-size: 14px;
   }
   .auth-terms {
     margin-top: 28px;
@@ -3708,7 +3714,7 @@ tr:last-child td {
     font-size: 28px;
   }
   .conversation-sidebar-heading .eyebrow {
-    font-size: 9px;
+    font-size: 12px;
   }
   .conversation-sidebar > .search-field {
     margin: 0 22px;
@@ -3722,7 +3728,7 @@ tr:last-child td {
     gap: 8px;
   }
   .chat-filter-tabs > button {
-    font-size: 11px;
+    font-size: 14px;
     padding: 8px 11px;
   }
   .conversation-item {
@@ -3732,25 +3738,25 @@ tr:last-child td {
   .conversation-item > .avatar {
     width: 43px;
     height: 43px;
-    font-size: 13px;
+    font-size: 14px;
   }
   .conversation-preview strong {
-    font-size: 13px;
+    font-size: 14px;
   }
   .conversation-preview small {
-    font-size: 8px;
+    font-size: 12px;
   }
   .conversation-preview > p {
-    font-size: 11px;
+    font-size: 14px;
     margin: 5px 0;
   }
   .conversation-kind {
-    font-size: 8px;
+    font-size: 12px;
   }
   .conversation-item > .unread-pill {
     top: 44px;
     right: 15px;
-    font-size: 9px;
+    font-size: 12px;
     width: 19px;
     height: 19px;
   }
@@ -3777,13 +3783,13 @@ tr:last-child td {
   .chat-header > .avatar {
     width: 35px;
     height: 35px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .chat-header h2 {
     font-size: 14px;
   }
   .chat-header p {
-    font-size: 9px;
+    font-size: 12px;
   }
   .chat-header > div {
     min-width: 0;
@@ -3801,26 +3807,26 @@ tr:last-child td {
     max-width: 82%;
   }
   .message-bubble {
-    font-size: 12px;
+    font-size: 14px;
     padding: 11px 13px;
   }
   .message-author {
-    font-size: 10px;
+    font-size: 12px;
   }
   .message-meta {
-    font-size: 8px;
+    font-size: 12px;
   }
   .composer-area {
     padding: 0 14px 13px;
   }
   .message-composer > textarea {
-    font-size: 12px;
+    font-size: 14px;
   }
   .composer-caption {
-    font-size: 7px;
+    font-size: 12px;
   }
   .anonymous-toggle {
-    font-size: 8px;
+    font-size: 12px;
     padding-left: 8px;
   }
   .message-row {
@@ -3829,13 +3835,13 @@ tr:last-child td {
   .message-row > .avatar {
     width: 27px;
     height: 27px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .toast {
     bottom: 20px;
     min-width: 280px;
     max-width: calc(100% - 32px);
-    font-size: 11px;
+    font-size: 14px;
     padding: 13px 15px;
   }
   .modal-backdrop {
@@ -3850,7 +3856,7 @@ tr:last-child td {
     font-size: 24px;
   }
   .modal-subtitle {
-    font-size: 11px;
+    font-size: 14px;
   }
   .form-row {
     gap: 12px;
@@ -3873,7 +3879,7 @@ tr:last-child td {
     font-size: 23px;
   }
   .profile-summary-content > p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .profile-detail {
     margin-top: 16px;
@@ -3889,7 +3895,7 @@ tr:last-child td {
     font-size: 15px;
   }
   .settings-heading p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .admin-stat-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3902,7 +3908,7 @@ tr:last-child td {
     font-size: 29px;
   }
   .admin-stat > p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .moderation-banner {
     flex-wrap: wrap;
@@ -3914,7 +3920,7 @@ tr:last-child td {
   }
   .moderation-banner > .button {
     margin-left: 56px;
-    font-size: 11px;
+    font-size: 14px;
   }
   .table-panel {
     padding: 17px;
@@ -3937,16 +3943,343 @@ tr:last-child td {
     gap: 15px;
   }
   .report-footer > span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .report-footer > .button {
-    font-size: 11px;
+    font-size: 14px;
   }
   .community-actions {
     flex-wrap: wrap;
   }
   .dashboard-section {
     margin-bottom: 27px;
+  }
+}
+/* Readable text and clear controls at every campus screen size. */
+body {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.button,
+.join-button {
+  min-height: 44px;
+  font-size: 14px;
+}
+.icon-button,
+.send-button {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.nav-item {
+  font-size: 14px;
+  min-height: 44px;
+}
+.global-search input,
+.search-field input,
+.form-stack input,
+.form-stack select,
+.form-stack textarea,
+.message-composer > textarea {
+  font-size: 16px;
+}
+.form-stack label,
+.color-picker legend,
+.friend-picker legend,
+.space-type-select strong {
+  font-size: 14px;
+}
+.dashboard-greeting p,
+.welcome-copy p,
+.section-heading p,
+.community-card > p,
+.connection-card p,
+.page-heading p,
+.discover-banner p,
+.person-card p,
+.request-card p,
+.request-card small,
+.modal-subtitle,
+.form-help,
+.settings-heading p,
+.profile-summary-content > p,
+.preference-row p,
+.empty-state p {
+  font-size: 14px;
+}
+.filter-tabs > button,
+.chat-filter-tabs > button {
+  font-size: 14px;
+  min-height: 44px;
+}
+.community-card h3,
+.chat-header h2 {
+  font-size: 17px;
+}
+.community-card-bottom {
+  flex-wrap: wrap;
+  row-gap: 12px;
+}
+.member-stack .avatar {
+  font-size: 9px;
+}
+.circle-link {
+  width: auto;
+  min-height: 40px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: auto;
+}
+.stats-strip > div {
+  min-width: 0;
+}
+.stats-strip > div > div > span {
+  white-space: normal;
+}
+.stats-strip a {
+  display: inline-flex;
+  min-width: 24px;
+  min-height: 24px;
+  justify-content: center;
+  align-items: center;
+}
+.recent-text strong,
+.conversation-preview strong {
+  font-size: 14px;
+}
+.recent-text p,
+.conversation-preview > p {
+  font-size: 14px;
+}
+.conversation-preview > div {
+  flex-wrap: wrap;
+  gap: 3px 8px;
+}
+.conversation-kind,
+.conversation-preview small,
+.message-author,
+.message-meta,
+.composer-caption {
+  font-size: 12px;
+}
+.message-bubble {
+  font-size: 16px;
+}
+.anonymous-toggle {
+  min-height: 40px;
+  font-size: 12px;
+}
+.report-button {
+  min-width: 28px;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+}
+.chat-filter-tabs {
+  flex-wrap: wrap;
+}
+.student-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.student-shortcuts > a,
+.student-shortcuts > button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: left;
+  min-width: 0;
+  transition: background 0.18s;
+}
+.student-shortcuts > a:hover,
+.student-shortcuts > button:hover {
+  background: var(--green-soft);
+}
+.shortcut-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.student-shortcuts strong {
+  display: block;
+  font-size: 14px;
+}
+.student-shortcuts small {
+  display: block;
+  font-size: 12px;
+  color: var(--secondary);
+  margin-top: 2px;
+}
+.student-shortcuts > a > svg,
+.student-shortcuts > button > svg {
+  margin-left: auto;
+  color: var(--green);
+}
+@media (max-width: 1200px) {
+  .student-shortcuts > a,
+  .student-shortcuts > button {
+    padding: 12px;
+    gap: 9px;
+  }
+  .student-shortcuts small {
+    display: none;
+  }
+  .student-shortcuts > a > svg,
+  .student-shortcuts > button > svg {
+    display: none;
+  }
+  .community-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 800px) {
+  .sidebar {
+    width: min(300px, calc(100vw - 48px));
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .sidebar-brand-row {
+    padding-left: 0;
+    margin-bottom: 24px;
+    gap: 4px;
+  }
+  .sidebar-brand-row > .brand {
+    font-size: 22px;
+    gap: 8px;
+  }
+  .sidebar-close {
+    display: inline-flex;
+  }
+  .sidebar-note p {
+    display: none;
+  }
+  .sidebar-note button {
+    min-height: 44px;
+    margin-top: 4px;
+  }
+  .topbar-title > span {
+    display: none;
+  }
+  .topbar {
+    gap: 12px;
+  }
+  .topbar-title {
+    flex: 0 0 auto;
+  }
+  .global-search {
+    flex: 1;
+    width: auto;
+    max-width: none;
+  }
+  .global-search input {
+    font-size: 16px;
+  }
+  .icon-button,
+  .topbar-actions .icon-button,
+  .send-button,
+  .circle-link,
+  .anonymous-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .student-shortcuts {
+    gap: 8px;
+  }
+}
+@media (max-width: 640px) {
+  .student-shortcuts {
+    grid-template-columns: 1fr;
+  }
+  .student-shortcuts small {
+    display: block;
+  }
+  .student-shortcuts > a > svg,
+  .student-shortcuts > button > svg {
+    display: block;
+  }
+  .student-shortcuts > a,
+  .student-shortcuts > button {
+    padding: 12px 15px;
+    gap: 12px;
+  }
+  .community-grid {
+    grid-template-columns: 1fr;
+  }
+  .topbar {
+    padding: 0 12px;
+    gap: 8px;
+  }
+  .topbar-actions {
+    gap: 0;
+  }
+  .stats-strip > div {
+    gap: 9px;
+    padding: 16px 14px;
+  }
+  .chat-header > div {
+    flex: 1;
+  }
+  .chat-header h2 {
+    max-width: 100%;
+  }
+  .composer-controls > div {
+    gap: 0;
+    min-width: 0;
+  }
+  .anonymous-toggle {
+    padding: 4px 6px;
+    margin-left: 0;
+  }
+  .composer-caption > span:first-child {
+    display: none;
+  }
+  .composer-caption {
+    justify-content: flex-end;
+  }
+  .filter-bar {
+    align-items: stretch;
+  }
+}
+@media (max-width: 360px) {
+  .main-content {
+    padding: 24px 16px;
+  }
+  .main-messages {
+    padding: 0;
+  }
+  .composer-area {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .message-composer {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .anonymous-toggle {
+    gap: 3px;
+    font-size: 12px;
+  }
+  .chat-header {
+    padding: 0 10px;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+  .modal {
+    padding: 22px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -67,8 +67,8 @@ export function People() {
     <>
       <PageHeading
         eyebrow="FAMILIAR FACES. NEW CONNECTIONS."
-        title="Find your people."
-        description="Good friends make a big campus feel a little smaller."
+        title="Find classmates & friends."
+        description="Send a friend request. Once it’s accepted, you can chat and invite them to a group."
       />
       <div className="filter-bar">
         <div className="filter-tabs">
@@ -176,7 +176,7 @@ export function People() {
                   onClick={() => chat(person)}
                 >
                   <MessageCircle size={16} />
-                  Say hello
+                  Message
                   <ArrowUpRight size={16} />
                 </button>
               ) : person.friendship === 'received' ? (
@@ -208,7 +208,7 @@ export function People() {
                     ? 'Request sent'
                     : busy === person._id
                       ? 'Sending…'
-                      : 'Connect'}
+                      : 'Add friend'}
                 </button>
               )}
             </article>
