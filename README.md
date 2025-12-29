@@ -2,9 +2,11 @@
 
 **Your campus. Your people. Your space.**
 
-A complete MERN rebuild of the original PHP/XAMPP Campus Chat project. Class groups, campus communities, and friends-only messaging come together in a responsive React workspace with a warm green palette, custom campus illustrations, and light and dark themes.
+A complete MERN rebuild of the original PHP/XAMPP Campus Chat project. Class groups, campus communities, and friends-only messaging come together in a responsive React app designed for students, with a warm green palette, custom campus illustrations, and light and dark themes.
 
 ![Campus Chat dashboard](docs/images/dashboard.png)
+
+The home page puts class chat, finding classmates, and creating a study group within easy reach. See the [student usability review and desktop/phone screenshots](docs/VISUAL-REVIEW.md) for browser validation.
 
 ## Run the demo
 

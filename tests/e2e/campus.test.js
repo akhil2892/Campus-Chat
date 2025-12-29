@@ -20,7 +20,7 @@ test('student campus flows work on desktop and mobile without page errors or hor
   await demo(page);
   await expect(page.getByRole('heading', { name: 'Your communities' })).toBeVisible();
   await page.getByRole('link', { name: 'Discover', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'There’s a place for you.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Discover campus rooms.' })).toBeVisible();
   const reading = page
     .locator('article')
     .filter({ has: page.getByRole('heading', { name: 'The reading room' }) });
@@ -129,6 +129,70 @@ test('new student registration joins the correct class and private community cre
   await page.reload();
   await expect(page.getByRole('heading', { name, exact: true })).toBeVisible();
 });
+test('live messages preserve a study group draft and Escape closes only the top dialog', async ({
+  browser,
+}) => {
+  const first = await browser.newContext();
+  const second = await browser.newContext();
+  const student = await first.newPage();
+  const friend = await second.newPage();
+  await demo(student);
+  await expect(student.locator('.community-card').first()).toBeVisible();
+  const unread = student.locator('.nav-item[href="/messages"] .nav-badge');
+  const count = (await unread.count()) ? Number(await unread.textContent()) : 0;
+  await student.getByRole('button', { name: /Create a study group/ }).click();
+  await expect(student.getByRole('button', { name: /Private group/ })).toHaveClass(/selected/);
+  const name = `Revision draft ${Date.now()}`;
+  const input = student.getByLabel('Space name');
+  await input.pressSequentially(name);
+  await friend.goto('/login');
+  await friend.getByLabel('College email').fill('sophia@college.edu');
+  await friend.getByLabel('Password', { exact: true }).fill('CampusDemo!2026');
+  await friend.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await friend.getByRole('link', { name: /Akhil Rao/ }).click();
+  await friend
+    .getByRole('textbox', { name: 'Write a message' })
+    .fill('I can bring my revision notes.');
+  await friend.getByRole('button', { name: 'Send message', exact: true }).click();
+  await expect(unread).toHaveText(String(count + 1));
+  await expect(input).toBeFocused();
+  await expect(input).toHaveValue(name);
+  await student.getByRole('button', { name: 'Create my space' }).click();
+  await expect(student.getByRole('heading', { name, exact: true })).toBeVisible();
+  await student.evaluate(() => {
+    window.campusHeaderChanges = [];
+    const header = document.querySelector('.chat-header');
+    new MutationObserver(() => window.campusHeaderChanges.push(header.innerText)).observe(header, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
+  });
+  await student
+    .getByRole('textbox', { name: 'Write a message' })
+    .fill('Our study plan starts here.');
+  await student.getByRole('button', { name: 'Send message', exact: true }).click();
+  await expect(student.locator('.message-bubble p').last()).toHaveText(
+    'Our study plan starts here.',
+  );
+  const headerChanges = await student.evaluate(() => window.campusHeaderChanges);
+  expect(
+    headerChanges.every((header) => header.includes(name) && !header.includes('0 members')),
+  ).toBe(true);
+  await student.getByRole('button', { name: 'Conversation details' }).click();
+  await student.getByRole('button', { name: 'Leave space', exact: true }).click();
+  await expect(student.getByRole('heading', { name: 'Leave this space?' })).toBeVisible();
+  await student.keyboard.press('Escape');
+  await expect(student.getByRole('dialog')).toHaveCount(1);
+  await expect(student.getByRole('dialog', { name, exact: true })).toBeVisible();
+  await expect(student.getByRole('button', { name: 'Leave space', exact: true })).toBeFocused();
+  await student.keyboard.press('Escape');
+  await expect(student.getByRole('dialog')).toHaveCount(0);
+  await expect(student.getByRole('button', { name: 'Conversation details' })).toBeFocused();
+  await first.close();
+  await second.close();
+});
+
 test('admin can create, edit, deactivate and reactivate campus sections', async ({ page }) => {
   await demo(page, 'admin');
   await page.getByRole('link', { name: 'Administration', exact: true }).click();
